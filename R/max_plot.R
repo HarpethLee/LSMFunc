@@ -1,5 +1,3 @@
-library(imager)
-
 max_plot <- function(array) {
   num_rows <- dim(array)[1]
   num_cols <- dim(array)[2]

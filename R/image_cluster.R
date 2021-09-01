@@ -1,6 +1,3 @@
-library(rlist)
-library(igraph)
-
 image_cluster <- function(x, max_dist = 10, min_intensity = 2000, min_cluster_size = 50, sample_prop = 2^(-8), sample_type = "grid") {
 
   if(!is.array(x)) {

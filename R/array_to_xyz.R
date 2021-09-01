@@ -1,5 +1,3 @@
-library(dplyr)
-
 array_to_xyz <- function(array) {
 
   array_df <- as.data.frame.table(array)

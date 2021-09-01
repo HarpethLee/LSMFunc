@@ -1,5 +1,3 @@
-library(dplyr)
-
 hist_prop_comp <- function(x, y, to = 2^16, by = 2^12) {
 
   break_seq = seq(0, to, by = by)
