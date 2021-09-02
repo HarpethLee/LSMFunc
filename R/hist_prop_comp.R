@@ -1,4 +1,39 @@
-hist_prop_comp <- function(x, y, to = 2^16, by = 2^12) {
+#' Proportion of Overlap Between Image Grayscale Distributions
+#'
+#' This function compares the grayscale distributions of two images. It finds
+#' the histogram for the two images at a given bin size and then compares the
+#' proportion of difference between the two.
+#'
+#' @param x An image array
+#' @param y An image array
+#' @param to Maximum value included in grayscale distribution
+#' @param by Size of bins in the grayscale distribution
+#'
+#' @return A Data Frame
+#' @export
+
+
+hist_prop_comp <- function(x, y, to = 2^16, by = 2^4) {
+
+  if(!is.numeric(x) | !is.numeric(y)) {
+    stop("x and y must be of type numeric")
+  }
+
+  if(!is.numeric(to)) {
+    stop("to must be a numeric")
+  }
+
+  if(to <= 0) {
+    stop("to must be a positive number")
+  }
+
+  if(!is.numeric(by)) {
+    stop("by must be a numeric")
+  }
+
+  if(by <= 0) {
+    stop("by must be a positive number")
+  }
 
   break_seq = seq(0, to, by = by)
 

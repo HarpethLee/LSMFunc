@@ -1,3 +1,16 @@
+#' Plot 3-Dimensional Images as 2-dimensional Projections
+#'
+#' Plots a 3-dimensional grayscale raster image as three separate 2-dimensional
+#' cimg plots. Each of these plots is the projection of maximum values from a
+#' 'face' of the original image onto a plane. These three images give us an
+#' approximation of the original image that can be viewed in R.
+#'
+#' @param array a 3-dimensional image array
+#'
+#' @return cimg plot
+#' @export
+
+
 max_plot <- function(array) {
   num_rows <- dim(array)[1]
   num_cols <- dim(array)[2]

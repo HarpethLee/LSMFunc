@@ -1,45 +1,65 @@
-crop_array <- function(image_array_1, image_array_2, value = 0) {
+#' Crops an Image Array
+#'
+#' This function crops an image array by removing all matrices on outer edges
+#' that do not contain any entries greater than a specified value.
+#'
+#' @param image_array a 3-dimensional image array
+#' @param value maximum value that cropped matrices can contain
+#'
+#' @return array
+#' @export
 
-  if(!is.array(image_array_1 | !is.array(image_array_2))) {
+
+crop_array <- function(image_array, value = 0) {
+
+  if(!is.array(image_array)) {
     stop("image_array must be of class array")
   }
 
-  for(i in 1:dim(image_array_1)[1]) {
-    if(any(image_array_1[i,,] > value) | any(image_array_2[i,,] > value)) {
+  if(!is.numeric(value)) {
+    stop("value must be a numeric")
+  }
+
+  if(value < 0) {
+    warning("value is a negative number")
+  }
+
+  for(i in 1:dim(image_array)[1]) {
+    if(any(image_array[i,,] > value) | any(image_array_2[i,,] > value)) {
       i
       break
     }}
 
-  for(j in dim(image_array_1)[1]:1) {
-    if(any(image_array_1[j,,] > value) | any(image_array_2[j,,] > value)) {
+  for(j in dim(image_array)[1]:1) {
+    if(any(image_array[j,,] > value) | any(image_array_2[j,,] > value)) {
       j
       break
     }}
 
-  for(k in 1:dim(image_array_1)[2]) {
-    if(any(image_array_1[,k,] > value) | any(image_array_2[,k,] > value)) {
+  for(k in 1:dim(image_array)[2]) {
+    if(any(image_array[,k,] > value) | any(image_array_2[,k,] > value)) {
       k
       break
     }}
 
-  for(l in dim(image_array_1)[2]:1) {
-    if(any(image_array_1[,l,] > value) | any(image_array_2[,l,] > value)) {
+  for(l in dim(image_array)[2]:1) {
+    if(any(image_array[,l,] > value) | any(image_array_2[,l,] > value)) {
       l
       break
     }}
 
-  for(m in 1:dim(image_array_1)[3]) {
-    if(any(image_array_1[,,m] > value) | any(image_array_2[,,m] > value)) {
+  for(m in 1:dim(image_array)[3]) {
+    if(any(image_array[,,m] > value) | any(image_array_2[,,m] > value)) {
       m
       break
     }}
 
-  for(n in dim(image_array_1)[3]:1) {
-    if(any(image_array_1[,,n] > value) | any(image_array_2[,,n] > value)) {
+  for(n in dim(image_array)[3]:1) {
+    if(any(image_array[,,n] > value) | any(image_array_2[,,n] > value)) {
       n
       break
     }}
 
-  list(image_array_1[i:j, k:l, m:n], image_array_2[i:j, k:l, m:n])
+  image_array[i:j, k:l, m:n]
 
 }

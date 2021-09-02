@@ -1,4 +1,30 @@
-image_cluster <- function(x, max_dist = 10, min_intensity = 2000, min_cluster_size = 50, sample_prop = 2^(-8), sample_type = "grid") {
+#' Finds Connected Clusters Within an Image
+#'
+#' This function finds clusters of points in an image and returns a list of points
+#' in each cluster. Image arrays are first filtered, removing all points below the
+#' set 'min_intensity'. Then, a connectivity graph is made with the remaining points
+#' in the array after being given xyz coordinate corresponding to a points location
+#' within the image array (this is done using the 'array_to_xyz() function). The
+#' maximum distance between connected points in the graph is decided by the variable
+#' 'max_dist'. A list is then returned containing the points in each graph.
+#'
+#' @param x An image array
+#' @param max_dist Maximum distance between connected points
+#' @param min_intensity Minimum intensity for points
+#' @param min_cluster_size Minimum size of cluster in returned list
+#' @param sample_prop Proportion of
+#' @param sample_type Takes values "grid" or "random"
+#'
+#' @return List of clusters
+#' @export
+
+
+image_cluster <- function(x,
+                          max_dist = 10,
+                          min_intensity = 2000,
+                          min_cluster_size = 50,
+                          sample_prop = 2^(-8),
+                          sample_type = "grid") {
 
   if(!is.array(x)) {
     stop("x must be an object of the class array")
